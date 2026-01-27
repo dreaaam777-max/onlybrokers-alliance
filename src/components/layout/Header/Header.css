@@ -1,4 +1,5 @@
 /* src/components/layout/Header/Header.css */
+
 .hdr {
   position: sticky;
   top: 0;
@@ -19,26 +20,47 @@
 .hdr__brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   text-decoration: none;
   color: inherit;
 }
 
+/* 🔥 LOGO CONTAINER (SIZE CONTROLS EVERYTHING) */
 .hdr__logo {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  border-radius: 12px;
+  width: 40px;        /* ← размер иконки */
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
   border: 1px solid rgba(217, 177, 90, .35);
   background: rgba(217, 177, 90, .10);
-  font-weight: 700;
-  letter-spacing: .5px;
+  overflow: hidden;   /* 🔑 важно */
 }
 
-.hdr__name strong { display: block; font-size: 14px; letter-spacing: .3px; }
-.hdr__name span { display: block; font-size: 12px; opacity: .75; margin-top: 2px; }
+/* 🔥 LOGO IMAGE — FULL SIZE */
+.hdr__logoImg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain; /* меняй на cover если хочешь */
+}
 
+/* TEXT */
+.hdr__name strong {
+  display: block;
+  font-size: 14px;
+  letter-spacing: .3px;
+}
+
+.hdr__name span {
+  display: block;
+  font-size: 12px;
+  opacity: .75;
+  margin-top: 2px;
+}
+
+/* NAV */
 .hdr__nav {
   display: flex;
   align-items: center;
@@ -54,11 +76,25 @@
   padding: 8px 10px;
   border-radius: 10px;
 }
-.hdr__link:hover { background: rgba(255,255,255,.06); color: rgba(255,255,255,.95); }
-.hdr__link:focus-visible { outline: 2px solid rgba(217,177,90,.8); outline-offset: 2px; }
 
-.hdr__actions { display: flex; align-items: center; gap: 10px; }
+.hdr__link:hover {
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.95);
+}
 
+.hdr__link:focus-visible {
+  outline: 2px solid rgba(217,177,90,.8);
+  outline-offset: 2px;
+}
+
+/* ACTIONS */
+.hdr__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* BURGER */
 .hdr__burger {
   display: none;
   width: 42px;
@@ -68,6 +104,7 @@
   background: rgba(255,255,255,.04);
   cursor: pointer;
 }
+
 .hdr__burger span {
   display: block;
   height: 2px;
@@ -77,6 +114,7 @@
   border-radius: 2px;
 }
 
+/* MOBILE */
 .hdr__mobile {
   display: none;
   border-top: 1px solid rgba(255,255,255,.06);
@@ -94,43 +132,53 @@
   background: rgba(255,255,255,.03);
   border: 1px solid rgba(255,255,255,.06);
   color: rgba(255,255,255,.9);
-  padding: 12px 12px;
+  padding: 12px;
   border-radius: 12px;
   cursor: pointer;
 }
-.hdr__mLink:hover { background: rgba(255,255,255,.06); }
 
-.hdr__mCta { margin-top: 6px; }
+.hdr__mLink:hover {
+  background: rgba(255,255,255,.06);
+}
 
+.hdr__mCta {
+  margin-top: 6px;
+}
+
+/* RESPONSIVE */
 @media (max-width: 920px) {
   .hdr__nav { display: none; }
-  .hdr__burger { display: inline-flex; align-items: center; justify-content: center; }
-  .hdr[data-open="true"] .hdr__mobile { display: block; }
+  .hdr__burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hdr[data-open="true"] .hdr__mobile {
+    display: block;
+  }
 }
-/* add */
-.hdr__mobile{
+
+/* overlay */
+.hdr__mobile {
   position: relative;
 }
 
-/* overlay for click-outside */
-.hdr__overlay{
+.hdr__overlay {
   display: none;
 }
 
 @media (max-width: 920px) {
-  .hdr[data-open="true"] .hdr__overlay{
-    display:block;
+  .hdr[data-open="true"] .hdr__overlay {
+    display: block;
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,.35);
     border: none;
-    padding: 0;
-    margin: 0;
     cursor: pointer;
     z-index: 0;
   }
 
-  .hdr[data-open="true"] .hdr__mobileInner{
+  .hdr[data-open="true"] .hdr__mobileInner {
     position: relative;
     z-index: 1;
   }

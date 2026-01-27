@@ -1,6 +1,8 @@
 // src/components/sections/FAQ/FAQ.jsx
+import { Link } from "react-router-dom";
 import Container from "../../layout/Container/index.jsx";
 import Accordion from "../../ui/Accordion/Accordion.jsx";
+import Button from "../../ui/Button/Button.jsx";
 import "./FAQ.css";
 
 const items = [
@@ -47,6 +49,17 @@ export default function FAQ() {
 
         <div className="faq__wrap">
           <Accordion items={items} />
+        </div>
+
+        {/* ✅ Read more */}
+        <div className="faq__more" aria-label="Read full rules">
+          <Button as="a" href="/affiliate-rules" variant="ghost">
+            Read full rules
+          </Button>
+
+          {/* На случай если захочешь именно react-router Link:
+              <Link className="btn btn--ghost" to="/affiliate-rules">Read full rules</Link>
+          */}
         </div>
       </Container>
     </section>
