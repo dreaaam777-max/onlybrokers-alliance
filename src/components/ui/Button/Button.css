@@ -1,0 +1,71 @@
+/* src/components/ui/Button/Button.css */
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+
+  cursor: pointer;
+  font-weight: 900;
+  letter-spacing: .15px;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+
+  transition:
+    transform .14s ease,
+    background .14s ease,
+    border-color .14s ease,
+    box-shadow .14s ease,
+    filter .14s ease;
+}
+
+.btn:active{
+  transform: translateY(1px);
+}
+
+.btn:focus-visible{
+  outline: 2px solid rgba(216,177,90,.9);
+  outline-offset: 2px;
+}
+
+/* GOLD */
+.btn--gold{
+  background: linear-gradient(180deg, rgba(216,177,90,.96), rgba(184,144,63,.96));
+  color: #0b1321;
+  border-color: rgba(216,177,90,.55);
+  box-shadow: 0 10px 30px rgba(216,177,90,.14);
+}
+
+.btn--gold:hover{
+  box-shadow: 0 18px 52px rgba(216,177,90,.20);
+  filter: brightness(1.02);
+}
+
+/* GHOST */
+.btn--ghost{
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  border-color: rgba(255,255,255,.12);
+}
+
+.btn--ghost:hover{
+  background: rgba(255,255,255,.07);
+  border-color: rgba(216,177,90,.32);
+}
+
+/* DISABLED */
+.btn.is-disabled,
+.btn:disabled{
+  opacity: .55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  filter: none;
+}
+

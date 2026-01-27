@@ -1,0 +1,124 @@
+/* src/components/sections/HowItWorks/HowItWorks.css */
+
+.hiw{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  position: relative;
+}
+
+/* connector line behind cards (desktop) */
+.hiw::before{
+  content:"";
+  position:absolute;
+  left: 2%;
+  right: 2%;
+  top: 34px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(216,177,90,.05),
+    rgba(216,177,90,.25),
+    rgba(216,177,90,.05)
+  );
+  opacity: .9;
+  pointer-events: none;
+}
+
+.hiw__item{
+  padding: 18px;
+  min-height: 180px;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  box-shadow: 0 14px 50px rgba(0,0,0,.22);
+  position: relative;
+  overflow: hidden;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+
+/* subtle gold corner */
+.hiw__item::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(520px 240px at 0% 0%, rgba(216,177,90,.12), transparent 60%);
+  pointer-events:none;
+}
+
+.hiw__item:hover{
+  transform: translateY(-2px);
+  border-color: rgba(216,177,90,.22);
+  background: rgba(255,255,255,.05);
+}
+
+.hiw__top{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.hiw__n{
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(216,177,90,.12);
+  border: 1px solid rgba(216,177,90,.30);
+  color: var(--gold);
+  font-weight: 950;
+}
+
+.hiw__chip{
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.03);
+  color: rgba(234,240,255,.72);
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: .25px;
+}
+
+.hiw__t{
+  margin-top: 2px;
+  font-weight: 950;
+  line-height: 1.35;
+  letter-spacing: -.15px;
+}
+
+.hiw__mini{
+  margin-top: auto;
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(234,240,255,.60);
+  line-height: 1.45;
+}
+
+/* tablet */
+@media (max-width: 980px){
+  .hiw{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hiw::before{
+    display:none; /* line not needed on wrap */
+  }
+  .hiw__item{
+    min-height: 170px;
+  }
+}
+
+/* phone */
+@media (max-width: 520px){
+  .hiw{
+    grid-template-columns: 1fr;
+  }
+  .hiw__item{
+    min-height: 0;
+  }
+}

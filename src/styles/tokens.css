@@ -1,0 +1,40 @@
+:root{
+  --bg: #071427;
+  --bg-2: #0b1e36;
+  --text: #eaf0ff;
+  --muted: rgba(234,240,255,.72);
+
+  --gold: #d8b15a;
+  --gold-2: #b8903f;
+
+  --card: rgba(255,255,255,.06);
+  --border: rgba(255,255,255,.12);
+
+  --focus: rgba(216,177,90,.9);
+  --radius: 18px;
+  --container: 1120px;
+
+  --shadow: 0 16px 60px rgba(0,0,0,.45);
+}
+/* Better text rendering */
+body{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Avoid horizontal scroll bugs */
+body{ overflow-x: hidden; }
+
+/* Better focus for accessibility (important for Google UX signals) */
+:focus-visible{
+  outline: 2px solid rgba(216,177,90,.65);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}

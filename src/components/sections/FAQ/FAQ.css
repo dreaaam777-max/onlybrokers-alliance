@@ -1,0 +1,11 @@
+/* src/components/sections/FAQ/FAQ.css */
+
+.faq__wrap{
+  max-width: 860px;
+  margin-top: 8px;
+}
+
+/* optional: slightly increase accordion spacing if needed */
+.faq__wrap .acc__item{
+  margin-bottom: 8px;
+}

@@ -1,0 +1,15 @@
+.ben{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.ben__card{ padding: 16px; }
+.ben__t{ font-weight: 900; color: var(--gold); }
+.ben__p{ margin-top: 8px; color: var(--muted); line-height:1.6; }
+
+@media (max-width: 980px){
+  .ben{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px){
+  .ben{ grid-template-columns: 1fr; }
+}

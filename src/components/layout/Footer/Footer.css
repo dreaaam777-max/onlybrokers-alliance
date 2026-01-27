@@ -1,0 +1,68 @@
+/* src/components/layout/Footer/Footer.css */
+.ftr {
+  margin-top: 60px;
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding: 34px 0 22px;
+}
+
+.ftr__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.2fr;
+  gap: 22px;
+}
+
+.ftr__title { font-weight: 700; letter-spacing: .2px; }
+.ftr__muted { opacity: .72; margin-top: 10px; line-height: 1.45; }
+
+.ftr__links { display: block; }
+
+.ftr__list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.ftr__list a {
+  color: rgba(255,255,255,.86);
+  text-decoration: none;
+  opacity: .9;
+}
+.ftr__list a:hover { opacity: 1; text-decoration: underline; }
+
+.ftr__lang { display: flex; gap: 10px; margin-top: 12px; }
+
+.ftr__pill {
+  border-radius: 999px;
+  padding: 8px 12px;
+  border: 1px solid rgba(217, 177, 90, .35);
+  background: rgba(217, 177, 90, .10);
+  color: rgba(255,255,255,.92);
+  cursor: pointer;
+}
+
+.ftr__pill--ghost {
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.03);
+}
+
+/* disabled RU выглядит корректно */
+.ftr__pill:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.ftr__bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  border-top: 1px solid rgba(255,255,255,.06);
+  margin-top: 22px;
+  padding-top: 16px;
+}
+
+@media (max-width: 900px) {
+  .ftr__grid { grid-template-columns: 1fr; }
+  .ftr__bottom { flex-direction: column; }
+}

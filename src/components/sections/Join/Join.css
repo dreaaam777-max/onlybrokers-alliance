@@ -1,0 +1,123 @@
+/* src/components/sections/Join/Join.css */
+
+.join{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.join__left{ padding-top: 2px; }
+
+.join__mini{
+  margin-top: 12px;
+  display: inline-flex;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(216,177,90,.28);
+  background: rgba(216,177,90,.08);
+  color: rgba(234,240,255,.88);
+  font-weight: 900;
+}
+
+.join__points{
+  margin: 14px 0 0;
+  padding-left: 18px;
+  color: rgba(234,240,255,.74);
+  line-height: 1.7;
+  font-weight: 700;
+  font-size: 13px;
+}
+.join__points li{ margin: 8px 0; }
+
+.join__card{
+  padding: 18px;
+  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+.join__card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(560px 260px at 0% 0%, rgba(216,177,90,.10), transparent 62%);
+  pointer-events:none;
+}
+
+.join__form{
+  display: grid;
+  gap: 10px;
+  position: relative;
+}
+
+.join__label{
+  font-weight: 900;
+  font-size: 13px;
+  color: rgba(234,240,255,.90);
+  letter-spacing: .2px;
+}
+
+.join__help{
+  margin-top: -6px;
+  color: rgba(234,240,255,.62);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.join__input{
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(7,20,39,.35);
+  color: var(--text);
+  outline: none;
+}
+
+.join__input::placeholder{
+  color: rgba(234,240,255,.46);
+}
+
+.join__input:focus{
+  border-color: rgba(216,177,90,.45);
+  box-shadow: 0 0 0 4px rgba(216,177,90,.10);
+}
+
+.join__ta{ min-height: 100px; resize: vertical; }
+
+.join__actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.join__note{
+  margin-top: 6px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  color: rgba(234,240,255,.70);
+  line-height: 1.6;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.join__status{
+  margin-top: 6px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(216,177,90,.28);
+  background: rgba(216,177,90,.08);
+  color: rgba(234,240,255,.90);
+  font-weight: 900;
+}
+
+/* responsive */
+@media (max-width: 900px){
+  .join{ grid-template-columns: 1fr; }
+}
+

@@ -1,0 +1,10 @@
+// src/components/ui/Card/Card.jsx
+import "./Card.css";
+
+export default function Card({ className = "", children, ...props }) {
+  return (
+    <div className={`card ${className}`.trim()} {...props}>
+      {children}
+    </div>
+  );
+}

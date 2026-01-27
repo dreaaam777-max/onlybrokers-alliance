@@ -1,0 +1,30 @@
+/* src/components/layout/Container/Container.css */
+
+:root{
+  --gutter: 20px;         /* базовый отступ */
+  --gutter-lg: 40px;      /* на больших экранах */
+  --header-h: 74px;       /* примерная высота хедера (можно подправить) */
+}
+
+/* контейнер */
+.container{
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+
+  padding-left: max(var(--gutter), env(safe-area-inset-left));
+  padding-right: max(var(--gutter), env(safe-area-inset-right));
+}
+
+/* чуть больше воздуха на больших */
+@media (min-width: 900px){
+  .container{
+    padding-left: var(--gutter-lg);
+    padding-right: var(--gutter-lg);
+  }
+}
+
+/* ✅ FIX: якоря + sticky header (чтобы секции не прятались) */
+section[id]{
+  scroll-margin-top: calc(var(--header-h) + 14px);
+}

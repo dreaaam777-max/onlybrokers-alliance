@@ -1,0 +1,73 @@
+/* src/components/ui/Accordion/Accordion.css */
+
+.acc{ display:grid; gap:10px; }
+
+.acc__item{
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255,255,255,.03);
+}
+
+.acc__btn{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  padding: 14px 16px;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+
+  font-weight: 800;
+}
+
+.acc__btn:hover{
+  background: rgba(255,255,255,.04);
+}
+
+.acc__btn:focus-visible{
+  outline: 2px solid rgba(216,177,90,.85);
+  outline-offset: 2px;
+}
+
+.acc__q{ line-height: 1.25; }
+
+.acc__icon{
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+
+  border: 1px solid rgba(216,177,90,.35);
+  background: rgba(216,177,90,.08);
+  color: var(--gold);
+
+  flex: 0 0 auto;
+}
+
+/* плавное раскрытие без max-height */
+.acc__panel{
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .22s ease;
+}
+
+.acc__panelInner{
+  overflow: hidden;
+}
+
+.acc__item.is-open .acc__panel{
+  grid-template-rows: 1fr;
+}
+
+.acc__a{
+  padding: 0 16px 16px;
+  color: var(--muted);
+  line-height: 1.65;
+}

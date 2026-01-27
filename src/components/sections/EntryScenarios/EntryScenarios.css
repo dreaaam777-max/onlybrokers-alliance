@@ -1,0 +1,107 @@
+/* src/components/sections/EntryScenarios/EntryScenarios.css */
+
+.es__grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* base card */
+.es__card{
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle glow */
+.es__card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(
+    600px 280px at 0% 0%,
+    rgba(255,255,255,.06),
+    transparent 60%
+  );
+  pointer-events:none;
+}
+
+/* Clients card — calmer */
+.es__card--clients{
+  opacity: .92;
+}
+
+/* Partners card — accent */
+.es__card--partners{
+  border-color: rgba(216,177,90,.35);
+  background:
+    radial-gradient(
+      620px 300px at 10% 0%,
+      rgba(216,177,90,.12),
+      transparent 60%
+    ),
+    rgba(255,255,255,.04);
+}
+
+/* tags */
+.es__tag{
+  display: inline-flex;
+  padding: 7px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: .35px;
+  color: rgba(234,240,255,.85);
+}
+
+.es__tag--gold{
+  border-color: rgba(216,177,90,.45);
+  background: rgba(216,177,90,.10);
+  color: var(--gold);
+}
+
+/* headings & text */
+.es__h{
+  margin: 14px 0 8px;
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: -.2px;
+}
+
+.es__p{
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* note */
+.es__note{
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(7,20,39,.4);
+  color: rgba(234,240,255,.78);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* actions */
+.es__actions{
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+/* mobile */
+@media (max-width: 900px){
+  .es__grid{
+    grid-template-columns: 1fr;
+  }
+}
