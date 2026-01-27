@@ -14,6 +14,7 @@ import FAQ from "../../components/sections/FAQ/FAQ";
 import Benefits from "../../components/sections/Benefits/Benefits";
 import Join from "../../components/sections/Join/Join";
 import FinalCTA from "../../components/sections/FinalCTA/FinalCTA";
+import Founders from "../../components/sections/Founders/Founders";
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
         <AllianceLeadership />
         <ForWhom />
         <About />
+        <Founders/>
         <EntryScenarios />
         <HowItWorks />
         <Commissions />
