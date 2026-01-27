@@ -1,6 +1,7 @@
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
 html{ scroll-behavior:smooth; }
+
 body{
   margin:0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -9,6 +10,54 @@ body{
     linear-gradient(180deg, var(--bg), var(--bg-2));
   color: var(--text);
 }
+
 a{ color: inherit; text-decoration: none; }
 img{ max-width:100%; height:auto; display:block; }
 ::selection{ background: rgba(216,177,90,.22); }
+
+/* ===============================
+   GLOBAL PAGE BACKGROUND (ALL PAGES)
+   =============================== */
+
+.page-bg{
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+}
+
+/* CONTENT LAYER ABOVE BACKGROUND */
+.page-bg__content{
+  position: relative;
+  z-index: 0;
+}
+
+/* IMAGE */
+.page-bg::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/hero.webp");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  z-index: -2;
+  opacity: 0.58;
+  filter: saturate(1.05) contrast(1.05);
+}
+
+/* GRADIENT OVERLAY */
+.page-bg::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(7,20,39,.86) 0%,
+      rgba(7,20,39,.82) 25%,
+      rgba(7,20,39,.78) 45%,
+      rgba(7,20,39,.90) 70%,
+      rgba(7,20,39,1) 100%
+    );
+  z-index: -1;
+}

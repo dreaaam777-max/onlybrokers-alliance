@@ -30,32 +30,23 @@ export default function Header() {
 
   const navItems = useMemo(() => NAV, []);
 
-  // закрывать меню при смене route
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  useEffect(() => setOpen(false), [pathname]);
 
-  // блокируем скролл под мобильным меню
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => (document.body.style.overflow = "");
   }, [open]);
 
-  // Esc to close
   useEffect(() => {
     if (!open) return;
-    const onKey = (e) => {
-      if (e.key === "Escape") setOpen(false);
-    };
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // После перехода на Home — делаем scroll стабильно
   useEffect(() => {
     if (pathname !== "/" || !pendingScroll) return;
 
-    // пробуем несколько кадров, чтобы секции успели появиться
     let tries = 0;
     const maxTries = 20;
 
@@ -79,7 +70,7 @@ export default function Header() {
       return;
     }
     setPendingScroll(id);
-    navigate("/", { replace: false });
+    navigate("/");
   }
 
   return (
@@ -87,7 +78,19 @@ export default function Header() {
       <Container>
         <div className="hdr__row">
           <Link to="/" className="hdr__brand" aria-label="ONLYBROKERS Alliance Home">
-            <span className="hdr__logo" aria-hidden="true">OB</span>
+            {/* LOGO IMAGE */}
+            <span className="hdr__logo" aria-hidden="true">
+              <img
+                className="hdr__logoImg"
+                src="/logo.png"
+                alt=""
+                width="40"
+                height="40"
+                loading="eager"
+                decoding="async"
+              />
+            </span>
+
             <div className="hdr__name">
               <strong>ONLYBROKERS</strong>
               <span>Alliance</span>
@@ -111,7 +114,6 @@ export default function Header() {
             <Button
               as="a"
               href={isHome ? "#join" : "/#join"}
-              variant="gold"
               onClick={(e) => {
                 e.preventDefault();
                 goToSection("join");
@@ -134,14 +136,13 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile menu */}
         <div
           className="hdr__mobile"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile menu"
+          aria-hidden={!open}
         >
-          {/* overlay */}
           <button
             className="hdr__overlay"
             type="button"

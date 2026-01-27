@@ -3,6 +3,7 @@ import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 
 import Hero from "../../components/sections/Hero/Hero";
+import Founders from "../../components/sections/Founders/Founders";
 import ForWhom from "../../components/sections/ForWhom/ForWhom";
 import About from "../../components/sections/About/About";
 import EntryScenarios from "../../components/sections/EntryScenarios/EntryScenarios";
@@ -63,10 +64,11 @@ export default function Home() {
 
       <Header />
 
-      <main className="page-bg">
+      <main className="page-bg__content">
         <Hero />
         <ForWhom />
         <About />
+        <Founders />
         <EntryScenarios />
         <HowItWorks />
         <Commissions />

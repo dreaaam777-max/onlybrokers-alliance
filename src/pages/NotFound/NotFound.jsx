@@ -30,9 +30,10 @@ export default function NotFound() {
               <Link className="nf__btn nf__btn--gold" to="/">
                 Back to Home
               </Link>
-              <a className="nf__btn nf__btn--ghost" href="#join">
+
+              <Link className="nf__btn nf__btn--ghost" to="/#join">
                 Request Partner Access
-              </a>
+              </Link>
             </div>
 
             <div className="nf__hint">
