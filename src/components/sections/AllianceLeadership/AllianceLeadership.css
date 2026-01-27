@@ -1,0 +1,119 @@
+/* src/components/sections/AllianceLeadership/AllianceLeadership.css */
+
+.ldr{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 50px;
+}
+
+.ldr__card{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  box-shadow: 0 14px 50px rgba(0,0,0,.22);
+  position: relative;
+  overflow: hidden;
+
+  /* 🔹 animation base */
+  transition:
+    transform .35s cubic-bezier(.2,.7,.2,1),
+    border-color .35s ease,
+    box-shadow .35s ease;
+}
+
+.ldr__card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(
+    620px 280px at 0% 0%,
+    rgba(216,177,90,.12),
+    transparent 58%
+  );
+  pointer-events:none;
+  opacity: .85;
+  transition: opacity .35s ease;
+}
+
+/* 🔥 HOVER EFFECT */
+.ldr__card:hover{
+  transform: translateY(-4px);
+  border-color: rgba(216,177,90,.32);
+  box-shadow: 0 22px 70px rgba(0,0,0,.35);
+}
+
+.ldr__card:hover::before{
+  opacity: 1;
+}
+
+/* AVATAR */
+.ldr__avatar{
+  width: 58px;
+  height: 58px;
+  border-radius: 999px;
+  border: 1px solid rgba(216,177,90,.32);
+  background: rgba(216,177,90,.08);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  transition:
+    transform .4s cubic-bezier(.2,.7,.2,1),
+    border-color .35s ease;
+}
+
+.ldr__img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.08);
+  transition: transform .4s cubic-bezier(.2,.7,.2,1);
+}
+
+/* 🔥 AVATAR ZOOM */
+.ldr__card:hover .ldr__avatar{
+  transform: scale(1.06);
+  border-color: rgba(216,177,90,.55);
+}
+
+.ldr__card:hover .ldr__img{
+  transform: scale(1.18);
+}
+
+/* TEXT */
+.ldr__info{
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.ldr__name{
+  font-weight: 950;
+  letter-spacing: .15px;
+  color: rgba(234,240,255,.96);
+  line-height: 1.15;
+}
+
+.ldr__role{
+  margin-top: 6px;
+  color: rgba(234,240,255,.70);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* RESPONSIVE */
+@media (max-width: 760px){
+  .ldr{
+    grid-template-columns: 1fr;
+  }
+  .ldr__avatar{
+    width: 54px;
+    height: 54px;
+  }
+}
