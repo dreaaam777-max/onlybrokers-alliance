@@ -163,7 +163,7 @@ export default function Footer() {
                 className="ftr__contactLink"
               >
                 <span className="ftr__ico"><IconTikTok /></span>
-                @onlybrokers_alliance
+                @onlybrokers.alliance
               </a>
             </li>
           </ul>

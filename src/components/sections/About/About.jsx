@@ -14,17 +14,34 @@ export default function About() {
     <section className="sec" id="about" aria-labelledby="about-title">
       <Container>
         <div className="about">
-          <header className="about__head">
-            <h2 className="sec__title" id="about-title">What is ONLYBROKERS Alliance</h2>
-            <p className="sec__sub">
-              A closed partner hub connecting clients, deals and professionals through referrals.
-            </p>
 
-            <div className="about__note">
-              Built to keep access controlled, attribution trackable, and partners protected.
+          {/* LEFT IMAGE */}
+          <div className="about__media">
+            <img
+              src="/grid.png"
+              alt="ONLYBROKERS Alliance network"
+              className="about__img"
+            />
+            <div className="about__overlay" />
+
+            <div className="about__mediaContent">
+              <h2 className="about__title" id="about-title">
+                What is ONLYBROKERS Alliance
+              </h2>
+
+              <p className="about__sub">
+                A private partner alliance connecting vetted clients, deals,
+                and professionals through controlled referrals.
+              </p>
+
+              <div className="about__note">
+                Built for controlled access, transparent attribution,
+                and long-term partner protection.
+              </div>
             </div>
-          </header>
+          </div>
 
+          {/* RIGHT CARDS */}
           <div className="about__cards" role="list" aria-label="Clarifications">
             {bullets.map((b) => (
               <Card key={b.k} className="about__card" role="listitem">
@@ -36,6 +53,7 @@ export default function About() {
               </Card>
             ))}
           </div>
+
         </div>
       </Container>
     </section>
