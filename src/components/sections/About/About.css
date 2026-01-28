@@ -1,26 +1,81 @@
 /* src/components/sections/About/About.css */
+
 .about{
   display: grid;
   grid-template-columns: 1.1fr .9fr;
   gap: 18px;
-  align-items: start;
+  align-items: stretch;
 }
 
-.about__head .sec__sub{
-  max-width: 70ch;
+/* ===== LEFT IMAGE ===== */
+
+.about__media{
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  min-height: 420px;
+}
+
+.about__img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* overlay for readability */
+.about__overlay{
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(7,20,39,.92) 0%,
+      rgba(7,20,39,.65) 38%,
+      rgba(7,20,39,.45) 60%,
+      rgba(7,20,39,.85) 100%
+    );
+  z-index: 0;
+}
+
+/* text over image */
+.about__mediaContent{
+  position: relative;
+  z-index: 1;
+  padding: 56px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.about__title{
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.25;
+  color: #fff;
+}
+
+.about__sub{
+  max-width: 46ch;
+  color: rgba(234,240,255,.85);
+  line-height: 1.6;
+  font-weight: 700;
 }
 
 .about__note{
-  margin-top: 14px;
+  margin-top: 6px;
   padding: 12px 14px;
   border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.03);
-  color: rgba(234,240,255,.72);
-  line-height: 1.6;
-  font-weight: 700;
+  border: 1px solid rgba(216,177,90,.28);
+  background: rgba(216,177,90,.08);
+  color: rgba(234,240,255,.88);
+  font-weight: 800;
   font-size: 13px;
+  max-width: fit-content;
 }
+
+/* ===== RIGHT CARDS ===== */
 
 .about__cards{
   display: grid;
@@ -37,12 +92,15 @@
   overflow: hidden;
 }
 
-/* gold glow in corner */
 .about__card::before{
   content:"";
   position:absolute;
   inset: 0;
-  background: radial-gradient(620px 280px at 0% 0%, rgba(216,177,90,.14), transparent 58%);
+  background: radial-gradient(
+    620px 280px at 0% 0%,
+    rgba(216,177,90,.14),
+    transparent 58%
+  );
   pointer-events: none;
 }
 
@@ -75,12 +133,22 @@
   line-height: 1.65;
 }
 
-/* hover (subtle) */
 .about__card:hover{
   border-color: rgba(216,177,90,.24);
 }
 
-/* responsive */
+/* ===== RESPONSIVE ===== */
+
 @media (max-width: 900px){
-  .about{ grid-template-columns: 1fr; }
+  .about{
+    grid-template-columns: 1fr;
+  }
+
+  .about__media{
+    min-height: 360px;
+  }
+
+  .about__mediaContent{
+    padding-top: 42px;
+  }
 }
