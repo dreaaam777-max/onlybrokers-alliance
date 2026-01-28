@@ -20,10 +20,21 @@ export default function Join() {
       <Container>
         <div className="join">
           <div className="join__left">
-            <h2 className="sec__title" id="join-title">How to join</h2>
-            <p className="sec__sub">
-              1) Request access → 2) Review &amp; approval → 3) Onboarding → 4) Start working
-            </p>
+            {/* IMAGE CARD (LEFT) */}
+            <div className="join__media" aria-hidden="true">
+              <img className="join__img" src="/enter.png" alt="" loading="lazy" />
+
+              <div className="join__mediaOverlay" />
+
+              <div className="join__mediaText">
+                <h2 className="sec__title join__titleOnMedia" id="join-title">
+                  How to join
+                </h2>
+                <p className="sec__sub join__subOnMedia">
+                  1) Request access → 2) Review &amp; approval → 3) Onboarding → 4) Start working
+                </p>
+              </div>
+            </div>
 
             <div className="join__mini" role="note">
               Entry by invitation only. Partners-first ecosystem.
