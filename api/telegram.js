@@ -1,39 +1,48 @@
 export default async function handler(req, res) {
-  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
 
-  try {
-    const { name, email, role, msg } = req.body || {};
+  const { name, email, role, msg, page } = req.body;
 
-    if (!name || !email || !role) {
-      return res.status(400).json({ error: "Missing required fields" });
-    }
+  if (!name || !email) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
 
-    const text =
-`🟡 New Partner Request
+  const text = `
+🟡 NEW PARTNER REQUEST
 
 👤 Name: ${name}
 📧 Email: ${email}
-🧩 Role: ${role}
+💼 Role: ${role}
+💬 Message: ${msg || "—"}
+🌐 Page: ${page}
+  `;
 
-💬 Message:
-${msg ? msg : "—"}`;
+  try {
+    const tgRes = await fetch(
+      `https://api.telegram.org/bot${process.env.TG_BOT_TOKEN}/sendMessage`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: process.env.TG_CHAT_ID,
+          text,
+          parse_mode: "HTML",
+        }),
+      }
+    );
 
-    const tgRes = await fetch(`https://api.telegram.org/bot${process.env.TG_BOT_TOKEN}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: process.env.TG_CHAT_ID,
-        text,
-      }),
-    });
+    const tgData = await tgRes.json();
 
-    if (!tgRes.ok) {
-      const errText = await tgRes.text();
-      return res.status(500).json({ error: "Telegram error", details: errText });
+    if (!tgData.ok) {
+      console.error("Telegram API error:", tgData);
+      return res.status(500).json({ error: "Telegram API failed" });
     }
 
     return res.status(200).json({ ok: true });
-  } catch (e) {
+  } catch (err) {
+    console.error("Server error:", err);
     return res.status(500).json({ error: "Server error" });
   }
 }
