@@ -126,22 +126,17 @@
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .ftr__grid { grid-template-columns: 1fr; }
-
-  .ftr__contactsBar{
-    grid-template-columns: 1fr;
-  }
-
+  /* центрируем только список контактов */
   .ftr__contactsRow{
-    flex-wrap: wrap;
-    overflow-x: visible;
+      width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
-  .ftr__contactItem:not(:last-child)::after{
-    display: none;
-  }
-
-  .ftr__bottom{
-    flex-direction: column;
+  /* чтобы каждая кнопка была по центру и одинаково смотрелась */
+  .ftr__contactLink{
+    justify-content: center;
+    width: 100%;
+    max-width: 360px;
   }
 }
