@@ -9,10 +9,35 @@ export default function Join() {
   const [status, setStatus] = useState("");
   const formId = useId();
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     e.preventDefault();
-    setStatus("Request received. Our team will review and respond by email.");
-    e.currentTarget.reset();
+
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    const payload = {
+      name: fd.get("name"),
+      email: fd.get("email"),
+      role: fd.get("role"),
+      msg: fd.get("msg"),
+    };
+
+    try {
+      setStatus("Sending...");
+
+      const res = await fetch("/api/telegram", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error("Failed");
+
+      setStatus("Request received. Our team will review and respond by email.");
+      form.reset();
+    } catch (err) {
+      setStatus("Something went wrong. Please try again later.");
+    }
   }
 
   return (
