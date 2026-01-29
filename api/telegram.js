@@ -1,23 +1,22 @@
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { name, email, role, msg, page } = req.body;
+  const { name, email, role, msg, page } = req.body || {};
 
   if (!name || !email) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
-  const text = `
-🟡 NEW PARTNER REQUEST
+  const text =
+`🟡 NEW PARTNER REQUEST
 
 👤 Name: ${name}
 📧 Email: ${email}
-💼 Role: ${role}
+💼 Role: ${role || "—"}
 💬 Message: ${msg || "—"}
-🌐 Page: ${page}
-  `;
+🌐 Page: ${page || "—"}`;
 
   try {
     const tgRes = await fetch(
@@ -28,7 +27,6 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           chat_id: process.env.TG_CHAT_ID,
           text,
-          parse_mode: "HTML",
         }),
       }
     );
@@ -37,7 +35,7 @@ export default async function handler(req, res) {
 
     if (!tgData.ok) {
       console.error("Telegram API error:", tgData);
-      return res.status(500).json({ error: "Telegram API failed" });
+      return res.status(500).json({ error: "Telegram API failed", detail: tgData });
     }
 
     return res.status(200).json({ ok: true });
@@ -45,4 +43,4 @@ export default async function handler(req, res) {
     console.error("Server error:", err);
     return res.status(500).json({ error: "Server error" });
   }
-}
+};
