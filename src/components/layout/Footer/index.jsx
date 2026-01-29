@@ -123,14 +123,15 @@ export default function Footer() {
           <ul className="ftr__contactsRow">
             <li className="ftr__contactItem">
               <a
-                href="mailto:onlybrokersalliance@gmail.com"
+                href="https://instagram.com/onlybrokers.alliance"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="ftr__contactLink"
               >
-                <span className="ftr__ico"><IconGmail /></span>
-                onlybrokersalliance@gmail.com
+                <span className="ftr__ico"><IconInstagram /></span>
+                @onlybrokers.alliance
               </a>
             </li>
-
             <li className="ftr__contactItem">
               <a
                 href="https://t.me/onlybrokers_alliance"
@@ -142,16 +143,13 @@ export default function Footer() {
                 @onlybrokers_alliance
               </a>
             </li>
-
             <li className="ftr__contactItem">
               <a
-                href="https://instagram.com/onlybrokers.alliance"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:onlybrokersalliance@gmail.com"
                 className="ftr__contactLink"
               >
-                <span className="ftr__ico"><IconInstagram /></span>
-                @onlybrokers.alliance
+                <span className="ftr__ico"><IconGmail /></span>
+                onlybrokersalliance@gmail.com
               </a>
             </li>
 
