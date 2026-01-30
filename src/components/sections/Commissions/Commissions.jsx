@@ -1,29 +1,60 @@
 // src/components/sections/Commissions/Commissions.jsx
+import { useTranslation } from "react-i18next";
 import Container from "../../layout/Container/index.jsx";
 import Card from "../../ui/Card/Card.jsx";
 import "./Commissions.css";
 
-const rows = [
-  { k: "3%", v: "Deal partner", t: "Deal reward" },
-  { k: "+1%", v: "Invited partner", t: "Referral level 1" },
-  { k: "+1%", v: "Second level", t: "Referral level 2" },
-  { k: "5%", v: "Agencies", t: "Agency program" },
-];
-
 export default function Commissions() {
+  const { t } = useTranslation();
+
+  const rows = [
+    {
+      k: "3%",
+      v: t("commissions.deal_partner"),
+      t: t("commissions.deal_reward"),
+    },
+    {
+      k: "+1%",
+      v: t("commissions.invited_partner"),
+      t: t("commissions.level_1"),
+    },
+    {
+      k: "+1%",
+      v: t("commissions.second_level"),
+      t: t("commissions.level_2"),
+    },
+    {
+      k: "5%",
+      v: t("commissions.agencies"),
+      t: t("commissions.agency_program"),
+    },
+  ];
+
   return (
-    <section className="sec" id="commissions" aria-labelledby="com-title">
+    <section
+      className="sec"
+      id="commissions"
+      aria-labelledby="com-title"
+    >
       <Container>
         <header className="sec__head">
-          <h2 className="sec__title" id="com-title">Commission model</h2>
-          <p className="sec__sub">Structured rewards. Rule-based attribution. Partner-first access.</p>
+          <h2 className="sec__title" id="com-title">
+            {t("commissions.title")}
+          </h2>
+          <p className="sec__sub">
+            {t("commissions.subtitle")}
+          </p>
         </header>
 
-        <div className="com__grid" role="list" aria-label="Commission tiers">
+        <div
+          className="com__grid"
+          role="list"
+          aria-label={t("commissions.aria")}
+        >
           {rows.map((r, idx) => (
             <Card
+              key={`${r.k}-${idx}`}
               className={`com__card ${idx === 0 ? "com__card--primary" : ""}`}
-              key={r.v}
               role="listitem"
             >
               <div className="com__tag">{r.t}</div>
@@ -34,8 +65,7 @@ export default function Commissions() {
         </div>
 
         <div className="com__note" role="note">
-          Attribution is tracked by partner introduction and project rules. Rewards apply only after
-          defined deal milestones are met.
+          {t("commissions.note")}
         </div>
       </Container>
     </section>

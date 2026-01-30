@@ -2,59 +2,40 @@
 import Container from "../../layout/Container/index.jsx";
 import Card from "../../ui/Card/Card.jsx";
 import Button from "../../ui/Button/Button.jsx";
+import { useTranslation } from "react-i18next";
 import "./EntryScenarios.css";
 
 export default function EntryScenarios() {
+  const { t } = useTranslation();
+
   return (
-    <section
-      className="sec"
-      id="entry-scenarios"
-      aria-labelledby="entry-title"
-    >
+    <section className="sec" id="entry-scenarios" aria-labelledby="entry-title">
       <Container>
         <header className="sec__head">
-          <h2 className="sec__title" id="entry-title">
-            Two entry scenarios
-          </h2>
+          <h2 className="sec__title" id="entry-title">{t("entry.title")}</h2>
           <p className="sec__sub">
-            One ecosystem — two ways people enter it.  
-            Access and monetization stay partner-first.
+            {t("entry.subtitle.line1")}<br />
+            {t("entry.subtitle.line2")}
           </p>
         </header>
 
         <div className="es__grid">
-          {/* Scenario A — Clients */}
           <Card className="es__card es__card--clients">
-            <div className="es__tag">Scenario A</div>
-            <h3 className="es__h">Clients</h3>
-            <p className="es__p">
-              Investors or buyers arrive via partner introduction or a direct
-              platform request. The platform routes the request and verified
-              professionals close the deal.
-            </p>
-
-            <div className="es__note">
-              Clients are served exclusively through partners or the platform
-              flow.
-            </div>
+            <div className="es__tag">{t("entry.scenarioA.tag")}</div>
+            <h3 className="es__h">{t("entry.scenarioA.title")}</h3>
+            <p className="es__p">{t("entry.scenarioA.desc")}</p>
+            <div className="es__note">{t("entry.scenarioA.note")}</div>
           </Card>
 
-          {/* Scenario B — Partners */}
           <Card className="es__card es__card--partners">
-            <div className="es__tag es__tag--gold">Scenario B</div>
-            <h3 className="es__h">Partners</h3>
-            <p className="es__p">
-              Brokers, agencies and referral partners join by invitation, get
-              access to verified projects, and earn through deals and structured
-              referrals.
-            </p>
+            <div className="es__tag es__tag--gold">{t("entry.scenarioB.tag")}</div>
+            <h3 className="es__h">{t("entry.scenarioB.title")}</h3>
+            <p className="es__p">{t("entry.scenarioB.desc")}</p>
 
             <div className="es__actions">
-              <Button as="a" href="#join">
-                Request Partner Access
-              </Button>
+              <Button as="a" href="#join">{t("request_access")}</Button>
               <Button as="a" href="#commissions" variant="ghost">
-                View commission model
+                {t("entry.scenarioB.cta_secondary")}
               </Button>
             </div>
           </Card>
