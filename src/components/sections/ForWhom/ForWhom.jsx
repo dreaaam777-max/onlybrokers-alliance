@@ -1,34 +1,52 @@
-// src/components/sections/ForWhom/ForWhom.jsx
+import { useTranslation } from "react-i18next";
 import Container from "../../layout/Container/index.jsx";
 import Card from "../../ui/Card/Card.jsx";
 import "./ForWhom.css";
 
-const items = [
-  { title: "Brokers & Agents", text: "Introduce clients, earn commissions, keep protection rules." },
-  { title: "Agencies", text: "Scale through structured referral levels and team tracking." },
-  { title: "Investors", text: "Submit a request and get served through the platform flow." },
-  { title: "Referral Partners", text: "Bring connections, get rewarded. No public marketplace noise." },
-];
-
 export default function ForWhom() {
+  const { t } = useTranslation();
+
+  const items = [
+    {
+      title: t("forWhom.items.brokers.title"),
+      text: t("forWhom.items.brokers.text"),
+    },
+    {
+      title: t("forWhom.items.agencies.title"),
+      text: t("forWhom.items.agencies.text"),
+    },
+    {
+      title: t("forWhom.items.investors.title"),
+      text: t("forWhom.items.investors.text"),
+    },
+    {
+      title: t("forWhom.items.referral.title"),
+      text: t("forWhom.items.referral.text"),
+    },
+  ];
+
   return (
     <section className="sec" id="for-whom" aria-labelledby="forwhom-title">
       <Container>
         <header className="sec__head">
-          <h2 className="sec__title" id="forwhom-title">Who this is for</h2>
-          <p className="sec__sub">
-            If you bring clients, capital or connections — this platform works for you.
-          </p>
+          <h2 className="sec__title" id="forwhom-title">
+            {t("forWhom.title")}
+          </h2>
+          <p className="sec__sub">{t("forWhom.subtitle")}</p>
         </header>
 
-        <div className="grid4" role="list">
+        <div className="grid4" role="list" aria-label={t("forWhom.aria")}>
           {items.map((it) => (
             <Card key={it.title} className="tile" role="listitem">
               <div className="tile__top">
                 <div className="tile__t">{it.title}</div>
               </div>
+
               <div className="tile__p">{it.text}</div>
-              <div className="tile__hint">Partner-first access • Trackable attribution</div>
+
+              <div className="tile__hint">
+                {t("forWhom.hint")}
+              </div>
             </Card>
           ))}
         </div>

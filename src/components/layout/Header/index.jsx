@@ -1,17 +1,9 @@
-// src/components/layout/Header/index.jsx
 import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Container from "../Container/index.jsx";
 import Button from "../../ui/Button/Button.jsx";
 import "./Header.css";
-
-const NAV = [
-  { id: "for-whom", label: "For whom" },
-  { id: "about", label: "About" },
-  { id: "how-it-works", label: "How it works" },
-  { id: "commissions", label: "Commissions" },
-  { id: "faq", label: "FAQ" },
-];
 
 function scrollToId(id) {
   const el = document.getElementById(id);
@@ -21,6 +13,7 @@ function scrollToId(id) {
 }
 
 export default function Header() {
+  const { t, i18n } = useTranslation();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isHome = pathname === "/";
@@ -28,7 +21,16 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [pendingScroll, setPendingScroll] = useState(null);
 
-  const navItems = useMemo(() => NAV, []);
+  const navItems = useMemo(
+    () => [
+      { id: "for-whom", label: t("nav_for_whom") },
+      { id: "about", label: t("nav_about") },
+      { id: "how_it_works", label: t("nav_how_it_works") },
+      { id: "commissions", label: t("nav_commissions") },
+      { id: "faq", label: t("nav_faq") },
+    ],
+    [t]
+  );
 
   useEffect(() => setOpen(false), [pathname]);
 
@@ -64,21 +66,32 @@ export default function Header() {
   }, [pathname, pendingScroll]);
 
   function goToSection(id) {
+    const realId = id === "how_it_works" ? "how-it-works" : id;
+
     if (isHome) {
-      scrollToId(id);
+      scrollToId(realId);
       setOpen(false);
       return;
     }
-    setPendingScroll(id);
+    setPendingScroll(realId);
     navigate("/");
   }
+
+  function setLang(lng) {
+    i18n.changeLanguage(lng);
+    document.documentElement.lang = lng;
+    try {
+      localStorage.setItem("lng", lng);
+    } catch {}
+  }
+
+  const activeLang = i18n.language?.startsWith("ru") ? "ru" : "en";
 
   return (
     <header className="hdr" data-open={open ? "true" : "false"}>
       <Container>
         <div className="hdr__row">
-          <Link to="/" className="hdr__brand" aria-label="ONLYBROKERS Alliance Home">
-            {/* LOGO IMAGE */}
+          <Link to="/" className="hdr__brand" aria-label={t("brand_home_aria")}>
             <span className="hdr__logo" aria-hidden="true">
               <img
                 className="hdr__logoImg"
@@ -97,7 +110,7 @@ export default function Header() {
             </div>
           </Link>
 
-          <nav className="hdr__nav" aria-label="Primary navigation">
+          <nav className="hdr__nav" aria-label={t("nav_aria")}>
             {navItems.map((n) => (
               <button
                 key={n.id}
@@ -119,13 +132,33 @@ export default function Header() {
                 goToSection("join");
               }}
             >
-              Request Partner Access
+              {t("request_access")}
             </Button>
+
+            {/* ✅ language pills (same look as footer) */}
+            <div className="hdr__lang" role="group" aria-label={t("lang_switch_aria")}>
+              <button
+                type="button"
+                className={`hdr__pill ${activeLang === "en" ? "" : "hdr__pill--ghost"}`}
+                aria-pressed={activeLang === "en"}
+                onClick={() => setLang("en")}
+              >
+                EN
+              </button>
+              <button
+                type="button"
+                className={`hdr__pill ${activeLang === "ru" ? "" : "hdr__pill--ghost"}`}
+                aria-pressed={activeLang === "ru"}
+                onClick={() => setLang("ru")}
+              >
+                RU
+              </button>
+            </div>
 
             <button
               className="hdr__burger"
               type="button"
-              aria-label={open ? "Close menu" : "Open menu"}
+              aria-label={open ? t("menu_close") : t("menu_open")}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
             >
@@ -140,13 +173,13 @@ export default function Header() {
           className="hdr__mobile"
           role="dialog"
           aria-modal="true"
-          aria-label="Mobile menu"
+          aria-label={t("mobile_menu_aria")}
           aria-hidden={!open}
         >
           <button
             className="hdr__overlay"
             type="button"
-            aria-label="Close menu"
+            aria-label={t("menu_close")}
             onClick={() => setOpen(false)}
             tabIndex={open ? 0 : -1}
           />
@@ -172,8 +205,28 @@ export default function Header() {
                   goToSection("join");
                 }}
               >
-                Request Partner Access
+                {t("request_access")}
               </Button>
+            </div>
+
+            {/* ✅ mobile language */}
+            <div className="hdr__mLang" role="group" aria-label={t("lang_switch_aria")}>
+              <button
+                type="button"
+                className={`hdr__pill ${activeLang === "en" ? "" : "hdr__pill--ghost"}`}
+                aria-pressed={activeLang === "en"}
+                onClick={() => setLang("en")}
+              >
+                EN
+              </button>
+              <button
+                type="button"
+                className={`hdr__pill ${activeLang === "ru" ? "" : "hdr__pill--ghost"}`}
+                aria-pressed={activeLang === "ru"}
+                onClick={() => setLang("ru")}
+              >
+                RU
+              </button>
             </div>
           </div>
         </div>

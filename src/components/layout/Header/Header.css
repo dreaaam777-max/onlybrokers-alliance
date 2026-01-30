@@ -227,3 +227,36 @@
     z-index: 1;
   }
 }
+/* ================= LANG PILLS (same as footer) ================= */
+
+.hdr__lang {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.hdr__pill {
+  border-radius: 999px;
+  padding: 8px 12px;
+  border: 1px solid rgba(217,177,90,.35);
+  background: rgba(217,177,90,.10);
+  color: #fff;
+  cursor: pointer;
+}
+
+.hdr__pill--ghost {
+  border-color: rgba(255,255,255,.14);
+  background: rgba(255,255,255,.03);
+}
+
+/* mobile lang row */
+.hdr__mLang {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* ✅ optional active feel (если хочешь как "selected") */
+.hdr__pill[aria-pressed="true"] {
+  box-shadow: 0 10px 30px rgba(216,177,90,.12), 0 0 0 4px rgba(216,177,90,.08);
+}

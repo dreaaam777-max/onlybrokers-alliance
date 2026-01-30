@@ -1,9 +1,12 @@
 // src/components/sections/Hero/Hero.jsx
+import { useTranslation } from "react-i18next";
 import Container from "../../layout/Container";
 import Button from "../../ui/Button/Button";
 import "./Hero.css";
 
 export default function Hero() {
+  const { t } = useTranslation();
+
   return (
     <section className="hero" id="hero" aria-label="ONLYBROKERS Alliance">
       {/* BACKGROUND IMAGE */}
@@ -16,31 +19,30 @@ export default function Hero() {
         <div className="hero__grid">
           <div className="hero__left">
             <div className="hero__badge" role="note">
-              Entry by invitation only
+              {t("hero.badge")}
             </div>
 
             <h1 className="hero__h1">
-              Exclusive Access to{" "}
-              <span className="hero__accent">Real Estate</span> Opportunities
+              {t("hero.h1_line1")}{" "}
+              <span className="hero__accent">{t("hero.h1_accent")}</span>{" "}
+              {t("hero.h1_line2")}
             </h1>
 
-            <p className="hero__sub">
-              Partner-only ecosystem for deals, referrals and scalable income.
-            </p>
+            <p className="hero__sub">{t("hero.sub")}</p>
 
-            <div className="hero__actions" aria-label="Primary actions">
+            <div className="hero__actions" aria-label={t("hero.actions_aria")}>
               <Button as="a" href="#join">
-                Request Partner Access
+                {t("request_access")}
               </Button>
               <Button as="a" href="#about" variant="ghost">
-                Learn how it works
+                {t("hero.cta_secondary")}
               </Button>
             </div>
 
-            <ul className="hero__meta" aria-label="Key positioning">
-              <li>Not a brokerage</li>
-              <li>Not a marketplace</li>
-              <li>Closed partner hub</li>
+            <ul className="hero__meta" aria-label={t("hero.meta_aria")}>
+              <li>{t("hero.meta.not_brokerage")}</li>
+              <li>{t("hero.meta.not_marketplace")}</li>
+              <li>{t("hero.meta.closed_hub")}</li>
             </ul>
           </div>
 
@@ -50,23 +52,23 @@ export default function Hero() {
                 <span className="hero__dot" />
                 <span className="hero__dot" />
                 <span className="hero__dot" />
-                <span className="hero__panelTitle">Partner Hub</span>
+                <span className="hero__panelTitle">{t("hero.panel.title")}</span>
               </div>
 
               <div className="hero__panelBody">
                 <div className="hero__kpi">
-                  <div className="hero__k">Verified projects</div>
-                  <div className="hero__v">Access</div>
+                  <div className="hero__k">{t("hero.panel.kpi1.k")}</div>
+                  <div className="hero__v">{t("hero.panel.kpi1.v")}</div>
                 </div>
 
                 <div className="hero__kpi">
-                  <div className="hero__k">Referral system</div>
-                  <div className="hero__v">Built-in</div>
+                  <div className="hero__k">{t("hero.panel.kpi2.k")}</div>
+                  <div className="hero__v">{t("hero.panel.kpi2.v")}</div>
                 </div>
 
                 <div className="hero__kpi">
-                  <div className="hero__k">Partner protection</div>
-                  <div className="hero__v">Rules</div>
+                  <div className="hero__k">{t("hero.panel.kpi3.k")}</div>
+                  <div className="hero__v">{t("hero.panel.kpi3.v")}</div>
                 </div>
               </div>
             </div>

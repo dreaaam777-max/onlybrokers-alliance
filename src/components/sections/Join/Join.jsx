@@ -1,13 +1,22 @@
-import { useId, useState } from "react";
+// src/components/sections/Join/Join.jsx
+import { useId, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Container from "../../layout/Container/index.jsx";
 import Card from "../../ui/Card/Card.jsx";
 import Button from "../../ui/Button/Button.jsx";
 import "./Join.css";
 
 export default function Join() {
+  const { t } = useTranslation();
+
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
   const formId = useId();
+
+  const roleOptions = useMemo(() => {
+    const arr = t("join.form.roles", { returnObjects: true });
+    return Array.isArray(arr) ? arr : [];
+  }, [t]);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -32,23 +41,20 @@ export default function Join() {
         body: JSON.stringify(payload),
       });
 
-      // если сервер вернул не 200 — покажем понятную ошибку
       if (!res.ok) {
         let detail = "";
         try {
           const data = await res.json();
           detail = data?.error ? ` (${data.error})` : "";
-        } catch {
-          // ignore
-        }
+        } catch {}
         throw new Error(`Request failed: ${res.status}${detail}`);
       }
 
-      setStatus("✅ Request received. Our team will review and respond by email.");
+      setStatus(t("join.status_success"));
       form.reset();
     } catch (err) {
       console.error(err);
-      setStatus("❌ Something went wrong. Please try again later.");
+      setStatus(t("join.status_error"));
     } finally {
       setLoading(false);
     }
@@ -65,39 +71,41 @@ export default function Join() {
               <div className="join__mediaOverlay" />
               <div className="join__mediaText">
                 <h2 className="sec__title join__titleOnMedia" id="join-title">
-                  How to join
+                  {t("join.title")}
                 </h2>
-                <p className="sec__sub join__subOnMedia">
-                  1) Request access → 2) Review &amp; approval → 3) Onboarding → 4) Start working
-                </p>
+                <p className="sec__sub join__subOnMedia">{t("join.subtitle")}</p>
               </div>
             </div>
 
             <div className="join__mini" role="note">
-              Entry by invitation only. Partners-first ecosystem.
+              {t("join.mini")}
             </div>
 
-            <ul className="join__points" aria-label="What happens next">
-              <li>Requests are reviewed against program rules and availability.</li>
-              <li>Approved partners receive onboarding instructions and access details.</li>
-              <li>Attribution and commissions are tracked by platform rules.</li>
+            <ul className="join__points" aria-label={t("join.points_aria")}>
+              <li>{t("join.points.p1")}</li>
+              <li>{t("join.points.p2")}</li>
+              <li>{t("join.points.p3")}</li>
             </ul>
           </div>
 
           <Card className="join__card">
             <form className="join__form" onSubmit={onSubmit} aria-describedby={`${formId}-note`}>
-              <label className="join__label" htmlFor={`${formId}-name`}>Name</label>
+              <label className="join__label" htmlFor={`${formId}-name`}>
+                {t("join.form.name_label")}
+              </label>
               <input
                 className="join__input"
                 id={`${formId}-name`}
                 name="name"
                 required
                 autoComplete="name"
-                placeholder="Your full name"
+                placeholder={t("join.form.name_ph")}
               />
-              <div className="join__help">Use the name you want shown in partner records.</div>
+              <div className="join__help">{t("join.form.name_help")}</div>
 
-              <label className="join__label" htmlFor={`${formId}-email`}>Email</label>
+              <label className="join__label" htmlFor={`${formId}-email`}>
+                {t("join.form.email_label")}
+              </label>
               <input
                 className="join__input"
                 id={`${formId}-email`}
@@ -106,41 +114,56 @@ export default function Join() {
                 required
                 autoComplete="email"
                 inputMode="email"
-                placeholder="you@email.com"
+                placeholder={t("join.form.email_ph")}
               />
-              <div className="join__help">We’ll reply to this email after review.</div>
+              <div className="join__help">{t("join.form.email_help")}</div>
 
-              <label className="join__label" htmlFor={`${formId}-role`}>Role</label>
-              <select className="join__input" id={`${formId}-role`} name="role" defaultValue="Broker / Agent">
-                <option>Broker / Agent</option>
-                <option>Agency</option>
-                <option>Investor</option>
-                <option>Referral Partner</option>
+              <label className="join__label" htmlFor={`${formId}-role`}>
+                {t("join.form.role_label")}
+              </label>
+              <select
+                className="join__input"
+                id={`${formId}-role`}
+                name="role"
+                defaultValue={roleOptions[0] || ""}
+              >
+                {roleOptions.map((r, idx) => (
+                  <option key={`role-${idx}`} value={r}>
+                    {r}
+                  </option>
+                ))}
               </select>
-              <div className="join__help">This helps us route your request correctly.</div>
+              <div className="join__help">{t("join.form.role_help")}</div>
 
-              <label className="join__label" htmlFor={`${formId}-msg`}>Message (optional)</label>
+              <label className="join__label" htmlFor={`${formId}-msg`}>
+                {t("join.form.msg_label")}
+              </label>
               <textarea
                 className="join__input join__ta"
                 id={`${formId}-msg`}
                 name="msg"
-                placeholder="Tell us what you bring: clients / capital / connections"
+                placeholder={t("join.form.msg_ph")}
               />
-              <div className="join__help">Short and clear is best.</div>
+              <div className="join__help">{t("join.form.msg_help")}</div>
 
               <div className="join__actions">
                 <Button type="submit" disabled={loading}>
-                  {loading ? "Sending..." : "Request Partner Access"}
+                  {loading ? t("join.form.sending") : t("request_access")}
                 </Button>
-                <Button as="a" href="#faq" variant="ghost">Read FAQ</Button>
+                <Button as="a" href="#faq" variant="ghost">
+                  {t("join.form.read_faq")}
+                </Button>
               </div>
 
               <div className="join__note" id={`${formId}-note`}>
-                By submitting, you agree that your request will be reviewed under program rules.
-                No public access. No open marketplace.
+                {t("join.note")}
               </div>
 
-              {status ? <div className="join__status" role="status">{status}</div> : null}
+              {status ? (
+                <div className="join__status" role="status">
+                  {status}
+                </div>
+              ) : null}
             </form>
           </Card>
         </div>
